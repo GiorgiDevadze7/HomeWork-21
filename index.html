@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Duel: Gandalf vs Dumbledore</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a2e;
+            color: #e6e6e6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background-color: #16213e;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #ff9a3c;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .wizards {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .wizard {
+            text-align: center;
+            width: 45%;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #0f3460;
+        }
+        
+        .wizard h2 {
+            color: #e94560;
+            margin-top: 0;
+        }
+        
+        .power-meter {
+            height: 20px;
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .power-level {
+            height: 100%;
+            background-color: #e94560;
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+        }
+        
+        .result {
+            background-color: #0f3460;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #ff9a3c;
+        }
+        
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #e94560;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #ff9a3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Magic Duel: Gandalf vs Dumbledore</h1>
+        
+        <div class="wizards">
+            <div class="wizard">
+                <h2>Gandalf</h2>
+                <div class="power-meter">
+                    <div class="power-level" id="gandalf-power"></div>
+                </div>
+                <p>Power: <span id="gandalf-power-text">100</span></p>
+            </div>
+            
+            <div class="wizard">
+                <h2>Dumbledore</h2>
+                <div class="power-meter">
+                    <div class="power-level" id="dumbledore-power"></div>
+                </div>
+                <p>Power: <span id="dumbledore-power-text">100</span></p>
+            </div>
+        </div>
+        
+        <button id="duel-button">Start Magic Duel</button>
+        
+        <div class="result" id="result">The duel is about to begin!</div>
+    </div>
+
+    <script>
+        // Initial power levels
+        let gandalfPower = 100;
+        let dumbledorePower = 100;
+        
+        // Update the visual representation of power levels
+        function updatePowerLevels() {
+            document.getElementById('gandalf-power').style.width = gandalfPower + '%';
+            document.getElementById('gandalf-power-text').textContent = gandalfPower;
+            
+            document.getElementById('dumbledore-power').style.width = dumbledorePower + '%';
+            document.getElementById('dumbledore-power-text').textContent = dumbledorePower;
+        }
+        
+        // Initialize power levels
+        updatePowerLevels();
+        
+        // Add event listener to the duel button
+        document.getElementById('duel-button').addEventListener('click', function() {
+            // Boost Gandalf's magic and weaken Dumbledore slightly
+            gandalfPower += 15;
+            dumbledorePower -= 5;
+            
+            // Update the visual representation
+            updatePowerLevels();
+            
+            // Compare and determine who is stronger
+            let resultMessage = "";
+            if (gandalfPower > dumbledorePower) {
+                resultMessage = "Gandalf the Grey is stronger!";
+            } else if (dumbledorePower > gandalfPower) {
+                resultMessage = "Dumbledore is stronger!";
+            } else {
+                resultMessage = "Their powers are equal!";
+            }
+            
+            // Display the result
+            document.getElementById('result').textContent = resultMessage;
+        });
+    </script>
+</body>
+</html>
